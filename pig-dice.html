@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Candal|Raleway" rel="stylesheet">
+    <script src="js/jquery-3.3.1.js"></script>
+    <script src="js/script.js"></script>
+  </head>
+  <body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Pig-dice</h1>
+    </div>
+    <div class="rules">
+      <p>Pig is a simple dice game which in its basic form is playable with just a single die. You win by being the first player to score 100 or more points.</p>
+      <p>Choose a player to go first. That player throws a die and scores as many points as the total shown on the die providing the die doesn’t roll a 1. The player may continue rolling and accumulating points (but risk rolling a 1) or end his turn.</p>
+      <p>If the player rolls a 1 his turn is over, he loses all points he accumulated that turn, and he passes the die to the next player.</p>
+      <p>Play passes from player to player until a winner is determined.</p>
+      <p>The first player to accumulate 100 or more points wins the game.</p>
+
+    </div>
+    <form class="form-group">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="name1">Enter your name</label>
+          <input type="text" id="name1">
+        </div>
+        <div class="col-md-6">
+          <label for="name2">Enter your name</label>
+          <input type="text" id="name2">
+        </div>
+      </div>
+  <center><button type="submit" class="start">Start Game!</button><center>
+    </form>
+    <div class="row">
+      <div class="col-sm-6">
+        <!-- Enter name -->
+        <h3><span id="player1"></span> </h3>
+        <div class="display1">
+          <h3>Dice Roll:</h3> <span id="dice-roll1"></span>
+          <h3>Round Score:</h3> <span id="round-score1"></span>
+          <h3>Total Score:</h3> <span id="score1"></span><br>
+          <button type="button" class="roll1">Roll</button>
+          <button type="button" class="Hold1">Hold</button>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <h3><span id="player2"></span> </h3>
+
+        <div class="display2">
+          <h3>Dice Roll:</h3> <span id="dice-roll2"></span>
+          <h3>Round Score:</h3> <span id="round-score2"></span>
+          <h3>Total Score:</h3> <span id="score2"></span><br>
+          <button type="button" class="roll2">Roll</button>
+          <button type="button" class="Hold2">Hold</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </body>
+</html>
