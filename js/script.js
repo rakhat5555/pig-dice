@@ -4,26 +4,34 @@ function Player(diceRoll, roundScore, totalScore) {
   this.totalScore= totalScore;
 }
 Player.prototype.Roll = function () {
-  var number = Math.floor(Math.random()*6)+1;
+  var number = Math.floor((Math.random()*6)+1);
   if (number !== 1){
     return [number, (this.roundScore += number)]
   }  else {
 
     alert("Ups! You got a ONE. Good luck next time!")
-      this.roundScore = 0;
+
 
   }
 }
 Player.prototype.Hold = function (totalScore) {
-  return this.totalScore += this.roundScore
+ this.totalScore += this.roundScore
   if (this.totalScore >= 15) {
     alert("You reached 100 points. Congratulations, you are a winner!")
   }
+  return this.totalScore;
 }
 // interface logic
 $(document).ready(function() {
+  $(".rules").click(function() {
+    $("#rules").toggle();
+  });
   $("form").submit(function(event) {
     event.preventDefault();
+    $("#rules").hide();
+    $("#gameArea").show();
+
+
     var player1 = $("input#name1").val();
     $("#player1").text(player1);
     var player2 = $("input#name2").val();
@@ -31,7 +39,7 @@ $(document).ready(function() {
     var Player1 =  new Player ( 0 , 0 , 0);
     var Player2 =  new Player ( 0 , 0 , 0);
     $(".roll1").click(function(){
-      Player1.diceRoll = Player1.Roll();
+      Player1.Roll();
       $("#dice-roll1").text(Player1.diceRoll[0]);
       $("#round-score1").text(Player1.roundScore);
     });
