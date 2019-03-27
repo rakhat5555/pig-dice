@@ -1,3 +1,9 @@
 #rules, #gameArea {
   display: none
 }
+
+ .display1Hide {
+  background-color: black;
+  opacity: 0.5;
+  filter: Alpha(opacity=50); /* IE8 and earlier */
+}
