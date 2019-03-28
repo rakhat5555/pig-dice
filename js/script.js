@@ -48,8 +48,12 @@ Player.prototype.Rolltwo = function () {
 Player.prototype.Hold = function (totalScore) {
  this.totalScore += this.roundScore
   if (this.totalScore >= 100) {
-    alert("You reached 100 points. Congratulations, you are a winner!")
+    $("#winner").show();
+     $("#gameArea").hide();
+     $(".hide1").removeClass('display1Hide');
+     $(".hide2").removeClass('display1Hide');
     return  this.totalScore=0;
+
   }
   this.diceRoll= 0;
   this.roundScore= 0;
@@ -63,7 +67,13 @@ function resetRound() {
   var shows = [$("#dice-roll1"), $("#round-score1"),$("#dice-roll2"), $("#round-score2")]
  shows.forEach(function(show) {
    show.text(0);
+
  })
+ $(".hide1").removeClass('display1Hide');
+ $(".hide2").removeClass('display1Hide');
+ $(".roll2").show();
+ $(".roll1").show();
+ this.totalScore = 0;
 };
 Player.prototype.resetGame = function() {
   var showResults = [$("#dice-roll1"), $("#round-score1"),$("#dice-roll2"), $("#round-score2"), $("#score1"), $("#score2")]
@@ -77,11 +87,15 @@ Player.prototype.resetGame = function() {
 $(document).ready(function() {
   $(".rules").click(function() {
     $("#rules").toggle();
+
   });
   $("form").submit(function(event) {
     event.preventDefault();
     $("#rules").hide();
     $("#gameArea").show();
+    $("#winner").hide();
+    $("#score2").text(this.totalScore= 0);
+    $("#score1").text(this.totalScore= 0);
 
     resetRound();
 
