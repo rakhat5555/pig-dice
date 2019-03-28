@@ -3,23 +3,53 @@ function Player(diceRoll, roundScore, totalScore) {
   this.roundScore= roundScore;
   this.totalScore= totalScore;
 }
-Player.prototype.Roll = function () {
-  var number = Math.floor((Math.random()*6)+1);
+var Player1;
+Player.prototype.Rollone = function () {
+  var number = Math.floor(6*Math.random())+1;
+  console.log(number)
   if (number !== 1){
+
     return [number, (this.roundScore += number)]
-  }  else {
+  }  else if ( number === 1){
+
+    // this.resetRound();
     alert("Ups! You got a ONE. Good luck next time!")
-    resetRound();
-    // return this.roundScore= 0;
+    $(".hide1").addClass('display1Hide');
+    $(".hide2").removeClass('display1Hide');
+    $(".roll1").hide();
+    $(".roll2").show();
+
+    return [this.roundScore= 0, this.diceRoll=1];
+  }
+
+}
+
+var Player2;
+Player.prototype.Rolltwo = function () {
+  var number = Math.floor(6*Math.random())+1;
+  console.log(number)
+  if (number !== 1){
+
+    return [number, (this.roundScore += number)]
+  }  else if ( number === 1){
+
+    // this.resetRound();
+    alert("Ups! You got a ONE. Good luck next time!")
+    $(".hide2").addClass('display1Hide');
+    $(".hide1").removeClass('display1Hide');
+    $(".roll2").hide();
+    $(".roll1").show();
+
+    return [this.roundScore= 0, this.diceRoll=1];
   }
 
 }
 
 Player.prototype.Hold = function (totalScore) {
  this.totalScore += this.roundScore
-  if (this.totalScore >= 15) {
+  if (this.totalScore >= 100) {
     alert("You reached 100 points. Congratulations, you are a winner!")
-
+    return  this.totalScore=0;
   }
   this.diceRoll= 0;
   this.roundScore= 0;
@@ -35,6 +65,13 @@ function resetRound() {
    show.text(0);
  })
 };
+Player.prototype.resetGame = function() {
+  var showResults = [$("#dice-roll1"), $("#round-score1"),$("#dice-roll2"), $("#round-score2"), $("#score1"), $("#score2")]
+ showResults.forEach(function(showResult) {
+   show.text(0);
+ })
+};
+
 
 // interface logic
 $(document).ready(function() {
@@ -45,6 +82,7 @@ $(document).ready(function() {
     event.preventDefault();
     $("#rules").hide();
     $("#gameArea").show();
+
     resetRound();
 
 
@@ -52,10 +90,10 @@ $(document).ready(function() {
     $("#player1").text(player1);
     var player2 = $("input#name2").val();
     $("#player2").text(player2);
-    var Player1 =  new Player ( 0 , 0 , 0);
-    var Player2 =  new Player ( 0 , 0 , 0);
+    Player1 =  new Player ( 0 , 0 , 0);
+    Player2 =  new Player ( 0 , 0 , 0);
     $(".roll1").click(function(){
-      Player1.diceRoll = Player1.Roll();
+      Player1.diceRoll = Player1.Rollone();
       $("#dice-roll1").text(Player1.diceRoll[0]);
       $("#round-score1").text(Player1.roundScore);
 
@@ -65,11 +103,14 @@ $(document).ready(function() {
       $("#score1").text(Player1.totalScore);
       $("#dice-roll1").text(Player1.diceRoll=0);
       $("#round-score1").text(Player1.roundScore=0);
-      $(".hide").addClass('display1Hide');
+      $(".hide1").addClass('display1Hide');
+      $(".hide2").removeClass('display1Hide');
+      $(".roll1").hide();
+      $(".roll2").show();
     });
 
     $(".roll2").click(function(){
-      Player2.diceRoll = Player2.Roll();
+      Player2.diceRoll = Player2.Rolltwo();
       $("#dice-roll2").text(Player2.diceRoll[0]);
       $("#round-score2").text(Player2.roundScore);
     });
@@ -78,6 +119,11 @@ $(document).ready(function() {
       $("#score2").text(Player2.totalScore);
       $("#dice-roll2").text(Player2.diceRoll=0);
       $("#round-score2").text(Player2.roundScore=0);
+      $(".hide2").addClass('display1Hide');
+      $(".hide1").removeClass('display1Hide');
+      $(".roll2").hide();
+      $(".roll1").show();
+
     });
   });
 });
