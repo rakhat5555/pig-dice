@@ -1,11 +1,15 @@
-function Player(diceRoll, roundScore, totalScore) {
+function Player(diceRoll, roundScore, totalScore,name) {
   this.diceRoll= diceRoll;
   this.roundScore= roundScore;
   this.totalScore= totalScore;
+  this.name=name;
+
 }
+var player1;
+var player2;
 var Player1;
 Player.prototype.Rollone = function () {
-  var number = Math.floor(6*Math.random())+1;
+  var number =( Math.floor(6*Math.random())+1);
   console.log(number)
   if (number !== 1){
 
@@ -19,14 +23,14 @@ Player.prototype.Rollone = function () {
     $(".roll1").hide();
     $(".roll2").show();
 
-    return [this.roundScore= 0, this.diceRoll=1];
+    return [this.roundScore= 0, this.diceRoll=0];
   }
 
 }
 
 var Player2;
 Player.prototype.Rolltwo = function () {
-  var number = Math.floor(6*Math.random())+1;
+  var number = (Math.floor(6*Math.random())+1);
   console.log(number)
   if (number !== 1){
 
@@ -47,7 +51,16 @@ Player.prototype.Rolltwo = function () {
 
 Player.prototype.Hold = function (totalScore) {
  this.totalScore += this.roundScore
-  if (this.totalScore >= 100) {
+  if (this.totalScore >= 5) {
+    console.log(this.name1)
+      console.log(player1)
+    if (Player.name === player1) {
+      alert('working')
+      $(".winnerName").text(player1);
+  } else {
+    alert('working222')
+    $(".winnerName").text(player2);
+  }
     $("#winner").show();
      $("#gameArea").hide();
      $(".hide1").removeClass('display1Hide');
@@ -100,9 +113,9 @@ $(document).ready(function() {
     resetRound();
 
 
-    var player1 = $("input#name1").val();
+     player1 = $("input#name1").val();
     $("#player1").text(player1);
-    var player2 = $("input#name2").val();
+     player2 = $("input#name2").val();
     $("#player2").text(player2);
     Player1 =  new Player ( 0 , 0 , 0);
     Player2 =  new Player ( 0 , 0 , 0);
